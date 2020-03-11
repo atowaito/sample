@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.mycompany</groupId>
+    <artifactId>SampleRProject</artifactId>
+    <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.source>13</maven.compiler.source>
+        <maven.compiler.target>13</maven.compiler.target>
+        <r.path>C:/Program Files/R/R-3.6.3</r.path>
+    </properties>
+    
+    <dependencies>
+        <dependency>
+            <groupId>jp.ac.ism.cran</groupId>
+            <artifactId>jri</artifactId>
+            <version>3.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jp.ac.ism.cran</groupId>
+            <artifactId>jriengine</artifactId>
+            <version>3.4</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>jp.ac.ism.cran</groupId>
+            <artifactId>riengine</artifactId>
+            <version>3.4</version>
+            <scope>compile</scope>
+
+        </dependency>    
+    </dependencies>
+    
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <executions>
+                    <execution>
+                        <id>install-external</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${r.path}/library/rJava/jri/JRI.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>jp.ac.ism.cran</groupId>
+                            <artifactId>jri</artifactId>
+                            <version>3.4</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>
+                    
+                    <execution>
+                        <id>install-external-2</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${r.path}/library/rJava/jri/JRIEngine.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>jp.ac.ism.cran</groupId>
+                            <artifactId>jriengine</artifactId>
+                            <version>3.4</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>                    
+
+                    <execution>
+                        <id>install-external-3</id>
+                        <phase>clean</phase>
+                        <configuration>
+                            <file>${r.path}/library/rJava/jri/REngine.jar</file>
+                            <repositoryLayout>default</repositoryLayout>
+                            <groupId>jp.ac.ism.cran</groupId>
+                            <artifactId>riengine</artifactId>
+                            <version>3.4</version>
+                            <packaging>jar</packaging>
+                            <generatePom>true</generatePom>
+                        </configuration>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                    </execution>                       
+                </executions>
+            </plugin>
+        </plugins>            
+    </build>
+    
+</project>
